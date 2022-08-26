@@ -1,0 +1,182 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ECommerce</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+  @* Nav Bar *@
+<nav>
+    <div class="top-bar">
+        <div class="top-bar-container">
+            <div class="div__sel">
+                <Select>
+                    <option><h1 class="curr">EN</h1></option>
+                    <option>FN</option>
+                </Select>
+                <Select>
+                    <option>USD</option>
+                    <option>NGN</option>
+                </Select>
+            </div>
+            <div class="div__sub">
+                @if(@HttpContextAccessor.HttpContext.Session.GetString("UserId") != null){
+                    <div class="div__min">
+                        <img src="~/images/profile2.svg" alt="" class="div__min--img">
+                        <a href="#" class="div__min--lnk">My Profile</a>
+                    </div>
+                    <div class="div__min">
+                        <a asp-controller="Customer" asp-action="Logout" asp-route-id="@HttpContextAccessor.HttpContext.Session.GetString("UserId")" class="div__min--lnk">Logout</a>
+                    </div>
+                }else{
+                     <div class="div__min">
+                        <a asp-controller="Customer" asp-action="Login" class="div__min--lnk">Login</a>
+                    </div>
+                    <div class="div__min">
+                        <a asp-controller="Customer" asp-action="Register" class="div__min--lnk">Register</a>
+                    </div>
+                }
+                
+                <div class="div__mini">
+                    <img src="~/images/cart.svg" alt="" class="div__min--img-1">
+                </div>
+                <div class="div__min">
+                    <a href="#" class="div__min--lnk" id="amount">Items</a>
+                </div>
+                <div class="div__min">
+                    <a href="#" class="div__min--lnk">#0.00</a>
+                    <img src="~/images/search-icon.svg" alt="" class="div__min--img">
+                    <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-nav">
+        <div class="logo-container">
+            <div class="logo">
+                <img src="~/images/logo.png" alt="" />
+            </div>
+        </div>
+
+        <div class="nav-items">
+            <ul>
+                <li><a asp-controller="Home" asp-action="Index" asp-route-id="">HOME</a></li>
+                <li><a href="#">CONTACT</a></li>
+                <li><a href="#">SNEAKERS</a></li>
+                <li><a href="#">BELTS</a></li>
+                <li><a href="#">CONTACT</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div>
+ @RenderBody()
+ </div>
+@* Footer *@
+<footer>
+    <div class="footer-box">
+        <div class="footer-up-magin">
+            <div class="footer-up-magin-content">
+                <div class="footer-up-logo">
+                    <img src="~/images/logo1.svg" alt="Logo"/>
+                </div>
+                <div class="footer-up-text">
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's 
+                        standard dummy text ever.Since the 1500s, when an unknown printer.</p>
+                </div>
+            </div>
+            <div class="footer-up-magin-content">
+                <div class="footer-up-title">
+                    <h1>Follow Us</h1>
+                </div>
+                <div class="footer-up-text">
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's 
+                        standard dummy text ever.Since the 1500s, when an unknown printer.</p>
+                </div>
+            </div>
+            <div class="footer-up-magin-content">
+                <div class="footer-up-title">
+                    <h1>Contact Us</h1>
+                </div>
+                <div class="footer-up-text">
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's 
+                        standard dummy text ever.Since the 1500s, when an unknown printer.</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-down-magin">
+            <div class="footer-down-magin-content">
+                <div class="footer-down-title">
+                    <h1>Infomation</h1>
+                </div>
+                <div class="footer-down-text">
+                    <p>About Us<br>
+                        Infomation<br>
+                        Privacy Policy<br>
+                        Terms & Conditions</p>
+                </div>
+            </div>
+            <div class="footer-down-magin-content">
+                <div class="footer-down-title">
+                    <h1>Service</h1>
+                </div>
+                <div class="footer-down-text">
+                    <p>About Us<br>
+                        Infomation<br>
+                        Privacy Policy<br>
+                        Terms & Conditions</p>
+                </div>
+            </div>
+            <div class="footer-down-magin-content">
+                <div class="footer-down-title">
+                    <h1>My Account</h1>
+                </div>
+                <div class="footer-down-text">
+                    <p>About Us<br>
+                        Infomation<br>
+                        Privacy Policy<br>
+                        Terms & Conditions</p>
+                </div>
+            </div>
+            <div class="footer-down-magin-content">
+                <div class="footer-down-title">
+                    <h1>Our Offers</h1>
+                </div>
+                <div class="footer-down-text">
+                    <p>About Us<br>
+                    Infomation<br>
+                    Privacy Policy<br>
+                    Terms & Conditions</p>
+                </div>
+            </div>  
+        </div>
+        <div class="line">
+            <hr>  
+        </div>
+
+        <div class="bottom">
+            <div class="url">
+                <p>© 2018 Ecommerce theme by www.bisenbaev.com</p>
+            </div>
+            <div class="bank-logo">
+                <div class="western">
+                    <img src="~/images/westernunion.svg"/>
+                </div>
+                <div class="paypal">
+                    <img src="~/images/paypal.svg"/>
+                </div>
+                <div class="mastercard">
+                    <img src="~/images/mastercard.svg"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

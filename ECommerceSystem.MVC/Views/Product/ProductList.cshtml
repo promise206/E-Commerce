@@ -1,0 +1,169 @@
+﻿@model ProductListViewModel
+
+<link rel="stylesheet" href="~/css/details.css" />
+<div class="details-navitor">
+    <h4 style="color: #33A0FF" class="navigator-label">Home/</h4>
+    <h4 style="color: #33A0FF" class="navigator-label">Hot Deal/</h4>
+    <h4 class="navigator-label">@Model.currentProduct.ProductName</h4>
+</div>
+<section id="product-display">
+    
+    <div id="details-product-main-container">
+        
+        <div class="details-products">
+            <div>
+                <div class="details-main-product">
+                    <div class="product-images">
+                        <img src="~/ProductImages/@Model.currentProduct.productImageModel.First().imageName" class="main-product-image"/>
+                        <div class="other-product-images">
+                            @foreach(var imageName in Model.currentProduct.productImageModel.Take(4))
+                            {
+                                <img src="~/ProductImages/@imageName.imageName" class="other-product-image">
+                            }
+                        </div>
+                    </div>
+                    <div class="about-product">
+                        <h2 class="details-product-title">@Model.currentProduct.ProductName</h2>
+                        <div class="product-credentials">
+                            <div class="product-stars">
+                                <img src="~/Images/star.svg" class="star"/>
+                                <img src="~/Images/star.svg" class="star"/>
+                                <img src="~/Images/star.svg" class="star"/>
+                                <img src="~/Images/star.svg" class="star"/>
+                                <img src="~/Images/starEmpty.svg" class="star"/>
+                            </div>
+                            <h3 class="review-number"> 0 Reviews</h3>
+                            <h3 class="review-number" style="color: #33A0FF"> Submit a review</h3>
+                        </div>
+                        <hr/>
+                        <div class="product-price-details">
+                            <h6 style="color:#40BFFF" class="product-discount-price">@Model.currentProduct.ActualPrice.ToString("C")</h6>
+                            <h6 class="product-original-price">@Model.currentProduct.Price.ToString("C")</h6>
+                            <h6 style="color: #FB7181" class="product-discount">@Model.currentProduct.PercentageOff% Off</h6>
+                        </div>
+                    
+                        @if (Model.currentProduct.InStock)
+                        {
+                            <h4 class="product-summary">Availability: In Stock</h4>
+                        }
+                        else
+                        {
+                            <h4 class="product-summary">Availability: Not In Stock</h4>
+                        }
+                        <div class="product-summary">Category=>
+                        
+                            @foreach(var category in Model.currentProductCategory)
+                            {
+                                <h6> ,&nbsp @category </h6>;
+                            }
+                        </div>
+                        <h4 class="product-summary">Free shipping</h4>
+                            <hr/>
+                        <div class="colour-selection">
+                            <h4 class="colour-header">Select Colour</h4>
+                            <div class="colours">
+                                <img src="~/Images/blue.svg" class="single-color"/>
+                                <img src="~/Images/red.svg" class="single-color"/>
+                                <img src="~/Images/black.svg" class="single-color"/>
+                                <img src="~/Images/yellow.svg" class="single-color"/>
+                            </div>
+                        </div>
+                        <div class="size">
+                            <div>
+                                <h4 class="size-label">Size</h4>
+                            </div>
+                            <div class="div__sel">
+                                <Select>
+                                    <option class="curr">XL</option>
+                                    <option class="curr">M</option>
+                                    <option class="curr">L</option>
+                                    <option class="curr">XXL</option>
+                                </Select>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="wrapper-main">
+                            <div class="wrapper">
+                                <span class="minus">-</span>
+                                <span class="num">1</span>
+                                <span class="plus">+</span>
+                            </div>
+                            <div class="wrapper-main-sub">
+                                <div class="add-to-cat">
+                                    <span class="minus"><img src="~/images/cart2.svg" /></span>
+                                    <span class="plus">Add To Cart</span>
+                                </div>
+                                <div class="add-to-cat-save">
+                                    <span class="minus-save"><img src="~/images/heart.svg" /></span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr/>
+                    </div>
+                </div>
+                <div class="product-description">
+                    <div>
+                        <h5>Product Information</h5>
+                        <hr />
+                    </div>
+                    <p>
+                        @Model.currentProduct.LongDescription
+                    </p>
+                </div>
+            </div>
+            <div class="details-best-seller-product">
+                <h4 style="text-align: left;" class="details-best-seller-title">BEST SELLER</h4>
+                <img src="~/images/product9.png" class="details-best-seller-image"/>
+                <div class="best-seller-product-stars">
+                    <img src="~/Images/star.svg" class="star"/>
+                    <img src="~/Images/star.svg" class="star"/>
+                    <img src="~/Images/star.svg" class="star"/>
+                    <img src="~/Images/star.svg" class="star"/>
+                    <img src="~/Images/star.svg" class="star"/>
+                </div>
+                <div class="best-seller-price-details">
+                    <h3 class="details-best-seller-discount-price">$499</h3>
+                    <h3 class="details-best-seller-original-price">$599$</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="products-display">
+   <div class="best-seller-text"><h5><b>RELATED PRODUCTS</b></h5></div>
+</section>
+
+<!-- Product Display on Banner -->
+<section>
+    <div class="product-wrapper">
+        @foreach(var product in Model.AllRelatedProductsByCategory.OrderBy(x=> Guid.NewGuid()).Take(4))
+        {
+            <a asp-controller="Product" asp-action="ProductList" asp-route-id="@product.ProductId">
+            <div class="pro">
+                <img src="~/ProductImages/@product.productImageModel.First().imageName" alt="Null" class="other-product-image-body"/>
+                <div class="product-below">
+                    <div class="product-below-top">
+                        <h1>@product.ProductName</h1>
+                    </div>
+                    <div class="product-below-img">
+                        <img src="~/images/rate.svg">
+                    </div>
+                    <div class="product-below-price">
+                        <div class="actual-price">@product.Price.ToString("C")</div>
+                        <div class="discount-price"><p>@product.ActualPrice.ToString("C")</p></div>
+                        <div class="percentage-off">@product.PercentageOff %Off</div>
+                    </div>
+                </div>
+            </div>
+            </a>
+        }
+    </div>
+</section>
+
+        @*<div>
+            <h4>@Model.currentProduct.ShortDescription</h4>
+            <h4>@Model.currentProduct.Quantity</h4>
+        </div>*@
+
+

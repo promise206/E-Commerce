@@ -1,0 +1,254 @@
+﻿@model ProductListViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section class="hero">
+    <h1>
+        Super flash sale <br>
+        50% off
+    </h1>
+</section>
+
+<!-- Product Display on Banner -->
+<div class="container">
+    <section class="top-product">
+        @foreach(var product in Model.Products.OrderBy(x=> Guid.NewGuid()).Take(3))
+        {
+            <a asp-controller="Product" asp-action="ProductList" asp-route-id="@product.ProductId">
+            <div class="top-product-container">
+                <img src="./ProductImages/@product.productImageModel.First().imageName" class="other-product-image" />
+                <h2 class="product-heading">@product.ProductName</h2>
+                <div class="top-product-below-price">
+                    <p class="top-product-actual-price">@product.Price.ToString("C")</p>
+                    <h6 class="top-product-per-off">@product.PercentageOff %Off</h6>
+                    <h6 class="top-product-discount-price">@product.ActualPrice.ToString("C")</h6>
+                </div>
+            </div>
+            </a>
+        }
+    </section>
+</div>
+
+<section class="products-display">
+        <div class="best-seller-text"><h5><b>BEST SELLER</b></h5></div>
+        <div class="items-list-justify">
+            <a href="#" style="color: black;"><h6>All</h6></a>
+            @foreach(var category in Model.CurrentCategory){
+                <div class="items-list">
+                    <a href="#"><h6>@category</h6></a>
+                </div>
+            }
+        </div>
+</section>
+
+<!-- Product Display on Body-->
+<section>
+    <div class="product-wrapper">
+        @foreach(var product in Model.Products.OrderBy(x=> Guid.NewGuid()).Take(8))
+        {
+            <a asp-controller="Product" asp-action="ProductList" asp-route-id="@product.ProductId">
+            <div class="pro">
+                <img src="./ProductImages/@product.productImageModel.First().imageName" alt="Null" class="other-product-image-body"/>
+                <div class="product-below">
+                    <div class="product-below-top">
+                        <h1>@product.ProductName</h1>
+                    </div>
+                    <div class="product-below-img">
+                        <img src="./images/rate.svg">
+                    </div>
+                    <div class="product-below-price">
+                        <div class="actual-price">@product.Price.ToString("C")</div>
+                        <div class="discount-price"><p>@product.ActualPrice.ToString("C")</p></div>
+                        <div class="percentage-off">@product.PercentageOff %Off</div>
+                    </div>
+                </div>
+            </div>
+            </a>
+        }
+    </div>
+        <div class="load-more">
+            <a href="#">LOAD MORE</a>
+            <hr />
+        </div>
+</section>
+
+<section class="blue-section">
+    <div class="blue-section-container">
+        <div class="blue-section-right">
+            <h1>
+                Adidas Men Running <br>
+                Sneakers
+            </h1>   
+            <p>Performance and design. Taken right to the edge.<br />SHOP NOW<br />
+            <hr/>
+            </p>
+        </div>
+        <div class="blue-section-left">
+            <img src="./images/shoe.svg" alt="Shoe"/>
+        </div>
+    </div>
+</section>
+
+<!-- Why Us -->
+
+<section class="why-us">
+    <div class="why-us-box">
+        
+        <div class="why-us-box-header1">
+            <img src="./images/shipping.svg"/>
+            <h5><b>FREE SHIPPING</b></h5>
+        </div>
+        <div class="why-us-box-body">
+            <h6>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h6>
+        </div>
+    </div>
+
+    <div class="why-us-box">
+        
+        <div class="why-us-box-header2">
+            <img src="./images/refund.svg"/>
+            <h5><b>100% REFUND</b></h5>
+        </div>
+        <div class="why-us-box-body">
+            <h6>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h6>
+        </div>
+    </div>
+    <div class="why-us-box">
+        
+        <div class="why-us-box-header3">
+            <img src="./images/support.svg"/>
+            <h5><b>SUPPORT 24/7</b></h5>
+        </div>
+        <div class="why-us-box-body">
+            <h6>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h6>
+        </div>
+    </div>
+</section>
+
+<!-- Latest News -->
+
+<section class="latest-news-container">
+    <h4><b>LATEST NEWS</b></h4>
+    <div class="latest-news">
+        <div class="latest-news-box">
+            <div class="latest-news-logo">
+                <img src="./images/latestNews1.svg"/>
+            </div>
+            <div class="latest-news-text">
+                <div class="date">
+                    <h6>01 Jan, 2015</h6>
+                </div>
+                <div class="title">
+                    <h5>Fashion Industry</h5>
+                </div>
+                <div class="text">
+                    <h6>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="latest-news-box">
+            <div class="latest-news-logo">
+                <img src="./images/latestNews2.svg"/>
+            </div>
+            <div class="latest-news-text">
+                <div class="date">
+                    <h6>01 Jan, 2015</h6>
+                </div>
+                <div class="title">
+                    <h5>Best Design Tools</h5>
+                </div>
+                <div class="text">
+                    <h6>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="latest-news-box">
+            <div class="latest-news-logo">
+                <img src="./images/latestNews3.svg"/>
+            </div>
+            <div class="latest-news-text">
+                <div class="date">
+                    <h6>01 Jan, 2015</h6>
+                </div>
+                <div class="title">
+                    <h5>HR Community</h5>
+                </div>
+                <div class="text">
+                    <h6>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Products -->
+
+<section class="featured-products-container">
+    <h4><b>FEATURED PRODUCTS</b></h4>
+    <div class="featured-products">
+        <div class="featured-products-box">
+            <div class="featured-products-img">
+                <img src="./images/featured.svg"/>
+            </div>
+            <div class="featured-products-text">
+                <div class="featured-products-name">
+                    <h6>Blue Swade Nike Sneakers</h6>
+                </div>
+                <div class="featured-products-rate">
+                    <img src="./images/rate.svg">
+                </div>
+                <div class="featured-products-price">
+                    <div class="featured-product-actual-price">$299,43</div>
+                    <div class="featured-product-discount-price"><p>$534,33</p></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="featured-products-box">
+            <div class="featured-products-img">
+                <img src="./images/featured.svg"/>
+            </div>
+            <div class="featured-products-text">
+                <div class="featured-products-name">
+                    <h6>Blue Swade Nike Sneakers</h6>
+                </div>
+                <div class="featured-products-rate">
+                    <img src="./images/rate.svg">
+                </div>
+                <div class="featured-products-price">
+                    <div class="featured-product-actual-price">$299,43</div>
+                    <div class="featured-product-discount-price"><p>$534,33</p></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="featured-products-box">
+            <div class="featured-products-img">
+                <img src="./images/featured.svg"/>
+            </div>
+            <div class="featured-products-text">
+                <div class="featured-products-name">
+                    <h6>Blue Swade Nike Sneakers</h6>
+                </div>
+                <div class="featured-products-rate">
+                    <img src="./images/rate.svg">
+                </div>
+                <div class="featured-products-price">
+                    <div class="featured-product-actual-price">$299,43</div>
+                    <div class="featured-product-discount-price"><p>$534,33</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@*Search Bar*@
+<section class="search-wrap">
+    <div class="search-box">
+        <input type="text" class="input" placeholder="Search query..."/>
+        <button>SEARCH</button>
+    </div>
+</section>

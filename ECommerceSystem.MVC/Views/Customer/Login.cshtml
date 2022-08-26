@@ -1,0 +1,29 @@
+﻿@model LoginViewModel
+<div class="customer-container">
+      <div class="row justify-content-center">
+          <div class="col-md-5">
+               <div class="card">
+                 <h2 class="card-title text-center">Login</h2>
+                  <div class="card-body py-md-4">
+                   <form asp-action="LoginAction" method="post" enctype="multipart/form-data">
+                       <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <input asp-for="Email" class="form-control" placeholder="Email"/>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <input asp-for="Password" type="password" class="form-control" placeholder="Password"/>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="d-flex flex-row align-items-center justify-content-between">
+                          <a asp-controller="Customer" asp-action="Register" asp-route-id="">Register</a>
+                          <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                        <div style="color: red;">@ViewBag.message</div>
+                   </form>
+                 </div>
+              </div>
+        </div>
+    </div>
+</div>
